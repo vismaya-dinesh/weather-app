@@ -9,6 +9,12 @@ function App() {
 
   const fetchWeather = async () => {
     if (!city) return;
+
+    const isValidCity = /^[a-zA-z\s]+$/.test(city);
+    if(!isValidCity) {
+      alert("Please enter a valid city name (letters only).");
+      return;
+    }
     const res = await fetch(
       `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`
     );
